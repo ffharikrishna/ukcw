@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "logos": "node scripts/build-logos.cjs"
+    "logos": "node scripts/build-logos.cjs",
+    "og": "node scripts/build-og.cjs"
   },
   "dependencies": {
     "next": "16.3.6",

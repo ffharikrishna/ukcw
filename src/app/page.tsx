@@ -37,11 +37,8 @@ export default async function Home() {
               <span>Canary Wharf</span>
               <span className={s.titleAccent}>Roleplay</span>
             </h1>
-            <p className={s.heroLede}>
-              UKCW is one of ER:LC&rsquo;s best UK roleplay servers. With a wide range of businesses and departments, a
-              team led by some of the most competent names in ER:LC, and professionally designed liveries, our server
-              gives you the best British roleplay experience.
-            </p>
+            {/* Same text as the link embed, so edit it in src/lib/site.ts. */}
+            <p className={s.heroLede}>{site.description}</p>
             <div className={s.heroActions}>
               <a href={site.discordInvite} className="btn btn-primary" target="_blank" rel="noreferrer">
                 Join the Discord <span className="arrow">→</span>

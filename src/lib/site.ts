@@ -3,8 +3,9 @@
 export const site = {
   name: "UK Canary Wharf Roleplay",
   shortName: "UKCW",
+  // Home page intro. Also used for search results and link embeds (Discord, etc).
   description:
-    "A UK-based Emergency Response: Liberty County community. Structured sessions, 15+ departments, and a staff team that takes roleplay seriously.",
+    "UKCW is one of ER:LC’s best UK roleplay servers. With a wide range of businesses and departments, a team led by some of the most competent names in ER:LC, and professionally designed liveries, our server gives you the best British roleplay experience.",
   // Total departments on the server; only the most popular are featured on the site.
   departmentCount: "15+",
   discordInvite: process.env.NEXT_PUBLIC_DISCORD_INVITE ?? "https://discord.gg/ukcw",
