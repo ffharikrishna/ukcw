@@ -25,7 +25,6 @@ export default async function Home() {
             fill
             priority
             sizes="100vw"
-            quality={80}
             className={s.backdropImg}
           />
           <div className={s.backdropTint} />
@@ -70,7 +69,10 @@ export default async function Home() {
           </div>
           <div>
             <span className={s.figure}>{community.online !== null ? fmt.format(community.online) : "—"}</span>
-            <span className={s.figureLabel}>Online in Discord now</span>
+            <span className={s.figureLabel}>
+              <span className={s.liveDot} aria-hidden />
+              Online in Discord now
+            </span>
           </div>
         </div>
       </section>

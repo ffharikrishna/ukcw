@@ -1,5 +1,7 @@
 .logo {
   display: block;
+  /* Both auto so the width/height attributes set the size and max-width can scale it down evenly. */
+  width: auto;
   max-width: 100%;
   height: auto;
 }

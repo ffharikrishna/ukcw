@@ -130,17 +130,18 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* Two stats, each centred in its half with a divider between them. */
 .figuresGrid > div {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 32px 0 32px 28px;
-  border-left: 1px solid var(--line);
+  align-items: center;
+  gap: 8px;
+  padding: 36px 16px;
+  text-align: center;
 }
 
-.figuresGrid > div:first-child {
-  padding-left: 0;
-  border-left: 0;
+.figuresGrid > div + div {
+  border-left: 1px solid var(--line);
 }
 
 .figure {
@@ -153,8 +154,19 @@
 }
 
 .figureLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
   color: var(--muted);
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 0 3px rgba(91, 212, 138, 0.15);
 }
 
 /* ---------------- Section head with a trailing link ---------------- */
@@ -294,7 +306,10 @@
 
 @media (max-width: 560px) {
   .figuresGrid > div {
-    padding: 24px 0 24px 18px;
+    padding: 26px 8px;
+  }
+  .figureLabel {
+    font-size: 13px;
   }
   .ctaGrid {
     border-radius: 12px;
