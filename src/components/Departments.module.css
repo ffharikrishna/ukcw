@@ -1,0 +1,214 @@
+/* ---------- Full list (/departments) ---------- */
+
+.list {
+  display: grid;
+  gap: 16px;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 220px;
+  gap: 40px;
+  align-items: start;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+  scroll-margin-top: 96px;
+  transition:
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+}
+
+.row:hover {
+  border-color: var(--line-strong);
+  background: var(--bg-hover);
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.rowButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+
+/* Stretch the button over the whole row. */
+.rowButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.rowButton:focus-visible {
+  outline: none;
+}
+
+.rowButton:focus-visible::after {
+  outline: 2px solid var(--brand-soft);
+  outline-offset: 3px;
+  border-radius: 16px;
+}
+
+.row:hover .rowButton {
+  color: var(--brand-soft);
+}
+
+.meta {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--faint);
+}
+
+.summary {
+  margin-top: 16px;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14.5px;
+}
+
+.view {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--brand-soft);
+}
+
+.row:hover .view :global(.arrow) {
+  transform: translateX(3px);
+}
+
+/* ---------- Logo grid (home) ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-raised);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+}
+
+.tile:hover {
+  border-color: var(--line-strong);
+  background: var(--bg-hover);
+}
+
+.tileMark {
+  display: grid;
+  place-items: center;
+  height: 132px;
+  padding: 0 28px;
+}
+
+.tileName {
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s var(--ease);
+}
+
+.tile:hover .tileName {
+  color: var(--text);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1020px) {
+  .row {
+    grid-template-columns: 180px 1fr;
+    gap: 24px 32px;
+  }
+  .side {
+    grid-column: 2;
+  }
+  .roles {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    gap: 12px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    border-radius: 14px;
+  }
+  .mark {
+    max-width: 220px;
+  }
+  .side {
+    grid-column: auto;
+  }
+  .grid {
+    gap: 12px;
+  }
+  .tileMark {
+    height: 104px;
+    padding: 0 18px;
+  }
+  .tileName {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}

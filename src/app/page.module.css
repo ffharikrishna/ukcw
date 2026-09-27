@@ -1,0 +1,240 @@
+/* ---------------- Hero ---------------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: -68px;
+  padding-top: calc(68px + clamp(48px, 8vw, 104px));
+  padding-bottom: clamp(96px, 12vw, 160px);
+}
+
+/* One soft light source, the same violet haze as the session banners. */
+.glow {
+  position: absolute;
+  inset: -20% -10% auto 30%;
+  height: 720px;
+  background: radial-gradient(closest-side, rgba(142, 108, 255, 0.22), transparent);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.heroGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 420px);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: end;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.25rem, 8.4vw, 7rem);
+  font-weight: 800;
+  font-style: italic;
+  font-variation-settings: "wdth" 108;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.titleAccent {
+  color: var(--brand-soft);
+}
+
+.heroLede {
+  margin-top: 32px;
+  max-width: 50ch;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(60px, 9vw, 130px);
+  color: var(--brand);
+  pointer-events: none;
+}
+
+/* ---------------- Figures ---------------- */
+
+.figures {
+  border-block: 1px solid var(--line);
+}
+
+.figuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.figuresGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 32px 0 32px 28px;
+  border-left: 1px solid var(--line);
+}
+
+.figuresGrid > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.figureLabel {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---------------- Section head with a trailing link ---------------- */
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-soft);
+}
+
+/* ---------------- Onward links ---------------- */
+
+.onward {
+  padding-bottom: clamp(72px, 10vw, 128px);
+}
+
+.onwardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.onwardCard {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3.5vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-raised);
+  transition: border-color 0.25s var(--ease);
+}
+
+.onwardCard:hover {
+  border-color: var(--line-strong);
+}
+
+.onwardCard :global(.eyebrow) {
+  margin-bottom: 14px;
+}
+
+.onwardCard h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.onwardCard p {
+  margin-top: 12px;
+  color: var(--muted);
+  max-width: 44ch;
+}
+
+.onwardArrow {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 32px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.onwardCard:hover :global(.arrow) {
+  transform: translateX(3px);
+}
+
+/* ---------------- CTA ---------------- */
+
+.cta {
+  padding-bottom: clamp(72px, 10vw, 128px);
+}
+
+.ctaGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px 72px;
+  align-items: center;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-raised);
+}
+
+.ctaMedia {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ctaBtn {
+  margin-top: 32px;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 980px) {
+  .heroGrid,
+  .ctaGrid {
+    grid-template-columns: 1fr;
+  }
+  .figuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .figuresGrid > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .figuresGrid > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 720px) {
+  .onwardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .figuresGrid > div {
+    padding: 24px 0 24px 18px;
+  }
+  .ctaGrid {
+    border-radius: 12px;
+  }
+}
