@@ -43,6 +43,10 @@ const recipes = {
   nh: { replace: { "#19233e": WHITE, "#011e41": WHITE } },
   rnli: { strip: [/<rect[^>]*fill="#FFFFFF"[^>]*\/>/i], whitenDark: true },
   ctsfo: { whitenDark: true },
+  army: { rootFill: WHITE }, // "ARMY / BE THE BEST" has no fill set; the Union Flag is kept.
+  iopc: { replace: { "#7f7f7d": WHITE } },
+  homeoffice: { rootFill: WHITE }, // Black wordmark has no fill set; the purple bar is kept.
+  hmps: { rootFill: WHITE },
 };
 
 function applyRecipe(svg, r) {
@@ -112,7 +116,8 @@ async function whitenDarkPixels(png) {
     })),
   );
   // toBuffer + writeFileSync rather than toFile: libvips can't write past Windows' MAX_PATH.
-  const sheet = await sharp({ create: { width: 1020, height: 280, channels: 4, background: "#0c0b10" } })
+  const height = 20 + Math.ceil(built.length / 4) * 130;
+  const sheet = await sharp({ create: { width: 1020, height, channels: 4, background: "#0c0b10" } })
     .composite(comps)
     .png()
     .toBuffer();

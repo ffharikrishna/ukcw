@@ -5,7 +5,10 @@
   padding: 28px;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: var(--bg-raised);
+  /* Slightly see-through so the home backdrop reads behind it. */
+  background: rgba(19, 18, 25, 0.8);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
 
 /* A hairline along the top edge picks up the state colour. */
@@ -168,4 +171,65 @@
 .footer {
   margin-top: auto;
   padding-top: 28px;
+}
+
+/* ---------- Wide variant: status on the left, code and action on the right ---------- */
+
+@media (min-width: 721px) {
+  .panel[data-variant="wide"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "top top"
+      "state meta"
+      "blurb meta"
+      "cap foot";
+    column-gap: 40px;
+  }
+
+  .panel[data-variant="wide"] .top {
+    grid-area: top;
+  }
+
+  .panel[data-variant="wide"] .state {
+    grid-area: state;
+    margin-top: 20px;
+  }
+
+  .panel[data-variant="wide"] .blurb {
+    grid-area: blurb;
+  }
+
+  .panel[data-variant="wide"] .capacity {
+    grid-area: cap;
+    margin-top: 20px;
+  }
+
+  .panel[data-variant="wide"] .meta {
+    grid-area: meta;
+    align-self: start;
+    margin-top: 20px;
+  }
+
+  .panel[data-variant="wide"] .footer {
+    grid-area: foot;
+    align-self: end;
+    padding-top: 20px;
+  }
+
+  /* Offline / vote: no host or player count, so the button sits straight under the code. */
+  .panel[data-variant="wide"][data-state="offline"],
+  .panel[data-variant="wide"][data-state="vote"] {
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "top top"
+      "state meta"
+      "blurb foot";
+  }
+
+  .panel[data-variant="wide"][data-state="offline"] .footer,
+  .panel[data-variant="wide"][data-state="vote"] .footer {
+    align-self: start;
+  }
 }

@@ -111,11 +111,13 @@ html:has(dialog[open]) {
   padding-block: clamp(72px, 10vw, 128px);
 }
 
+/* Small-caps label above section titles. */
 .eyebrow {
   display: block;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--brand-soft);
   margin-bottom: 18px;
 }

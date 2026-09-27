@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Departments } from "@/components/Departments";
 import { SessionPanel } from "@/components/SessionPanel";
 import { Waves } from "@/components/Waves";
-import { departments } from "@/lib/departments";
+import { featuredDepartments } from "@/lib/departments";
 import { getCommunity } from "@/lib/discord";
 import { site } from "@/lib/site";
 import s from "./page.module.css";
@@ -17,18 +17,31 @@ export default async function Home() {
     <>
       {/* ---------------- Hero ---------------- */}
       <section className={s.hero}>
+        {/* Backdrop: in-game scene, dimmed, tinted violet and faded into the page. */}
+        <div className={s.backdrop} aria-hidden>
+          <Image
+            src="/brand/hero-scene.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={80}
+            className={s.backdropImg}
+          />
+          <div className={s.backdropTint} />
+          <div className={s.backdropFade} />
+        </div>
         <div className={s.glow} aria-hidden />
-        <div className={`container ${s.heroGrid}`}>
-          <div>
-            <span className="eyebrow">Emergency Response: Liberty County · UK roleplay</span>
+        <div className={`container ${s.heroInner}`}>
+          <div className={s.heroCopy}>
             <h1 className={s.title}>
-              <span>Canary</span>
-              <span>Wharf</span>
+              <span>Canary Wharf</span>
               <span className={s.titleAccent}>Roleplay</span>
             </h1>
             <p className={s.heroLede}>
-              A British emergency services community on ER:LC. Structured sessions, proper chains of command and eight
-              departments working the same streets, from a Met response car to an RNLI crew on the Thames.
+              UKCW is one of ER:LC&rsquo;s best UK roleplay servers. With a wide range of businesses and departments, a
+              team led by some of the most competent names in ER:LC, and professionally designed liveries, our server
+              gives you the best British roleplay experience.
             </p>
             <div className={s.heroActions}>
               <a href={site.discordInvite} className="btn btn-primary" target="_blank" rel="noreferrer">
@@ -40,7 +53,9 @@ export default async function Home() {
             </div>
           </div>
 
-          <SessionPanel />
+          <div className={s.heroStatus}>
+            <SessionPanel variant="wide" />
+          </div>
         </div>
 
         <Waves className={s.waves} />
@@ -57,14 +72,6 @@ export default async function Home() {
             <span className={s.figure}>{community.online !== null ? fmt.format(community.online) : "—"}</span>
             <span className={s.figureLabel}>Online in Discord now</span>
           </div>
-          <div>
-            <span className={s.figure}>{departments.length}</span>
-            <span className={s.figureLabel}>Departments</span>
-          </div>
-          <div>
-            <span className={s.figure}>{site.maxPlayers}</span>
-            <span className={s.figureLabel}>Players per session</span>
-          </div>
         </div>
       </section>
 
@@ -74,10 +81,14 @@ export default async function Home() {
           <div className={s.sectionHead}>
             <div>
               <span className="eyebrow">Departments</span>
-              <h2 className="section-title">Eight services. One city to keep running.</h2>
+              <h2 className="section-title">{site.departmentCount} departments. Take your pick.</h2>
+              <p className={s.featured}>
+                <span className={s.featuredDot} aria-hidden />
+                Showing our {featuredDepartments.length} most popular
+              </p>
             </div>
             <Link href="/departments" className={s.more}>
-              All departments <span className="arrow">→</span>
+              Department details <span className="arrow">→</span>
             </Link>
           </div>
           <Departments variant="grid" />

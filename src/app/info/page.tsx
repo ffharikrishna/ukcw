@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { getHeadshots } from "@/lib/roblox";
 import { site } from "@/lib/site";
+import { leadership, robloxProfile, staffTeams } from "@/lib/team";
 import s from "../subpage.module.css";
+import t from "./info.module.css";
 
 export const metadata: Metadata = {
   title: "Info",
-  description: "Four steps from joining the UKCW Discord to your first call in an ER:LC session.",
+  description: "How to join UKCW, who runs it, and the staff teams behind the server.",
 };
 
 type Step = {
@@ -37,22 +41,88 @@ const steps: Step[] = [
   },
 ];
 
-export default function InfoPage() {
+export default async function InfoPage() {
+  const headshots = await getHeadshots(leadership.map((l) => l.robloxId));
+
   return (
     <>
-      <PageHeader eyebrow="Info" title="From Discord to your first call">
-        You don&rsquo;t need experience. Every department runs its own training, and there&rsquo;s always someone in
-        the Discord who can help.
+      <PageHeader eyebrow="Info" title="About UKCW">
+        Who runs the server, the teams behind it, and how to get started.
       </PageHeader>
 
-      <section className="section">
+      {/* ---------------- Leadership ---------------- */}
+      <section className={`section ${t.band}`} id="leadership">
+        <div className="container">
+          <span className="eyebrow">Leadership</span>
+          <h2 className="section-title">Owner &amp; board of chairmen</h2>
+
+          <ul className={t.leaders}>
+            {leadership.map((l) => {
+              const src = headshots[l.robloxId];
+              return (
+                <li key={l.robloxId}>
+                  <a
+                    href={robloxProfile(l.robloxId)}
+                    className={t.leader}
+                    data-owner={l.role === "Owner" || undefined}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div className={t.portrait}>
+                      {src ? (
+                        <Image src={src} alt={`${l.name}'s Roblox avatar`} fill sizes="(max-width: 640px) 50vw, 280px" />
+                      ) : (
+                        <span className={t.initial} aria-hidden>
+                          {l.name.replace(/[^a-z]/gi, "").charAt(0).toUpperCase()}
+                        </span>
+                      )}
+                    </div>
+                    <div className={t.leaderText}>
+                      <span className={t.role}>{l.role}</span>
+                      <h3>{l.name}</h3>
+                      <span className={t.handle}>
+                        @{l.username} <span className="arrow">↗</span>
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------------- Staff teams ---------------- */}
+      <section className="section" id="staff">
+        <div className="container">
+          <span className="eyebrow">Staff</span>
+          <h2 className="section-title">The teams behind the server</h2>
+
+          <ul className={t.teams}>
+            {staffTeams.map((team) => (
+              <li key={team.name} className={t.team}>
+                <h3>{team.name}</h3>
+                <p>{team.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------------- How to join ---------------- */}
+      <section className={`section ${t.band}`} id="join">
         <div className={`container ${s.split}`}>
           <div className={s.splitIntro}>
-            <span className="eyebrow">Before you start</span>
-            <h2 className="section-title">What you&rsquo;ll need.</h2>
+            <span className="eyebrow">How to join</span>
+            <h2 className="section-title">From Discord to your first call.</h2>
             <p className="lede">
-              A Roblox account, a copy of Emergency Response: Liberty County and a Discord account. That&rsquo;s it.
+              You don&rsquo;t need experience. Every department runs its own training, and there&rsquo;s always
+              someone in the Discord who can help.
             </p>
+            <div className={t.needs}>
+              <h3>What you&rsquo;ll need</h3>
+              <p>A Discord account and Roblox. That&rsquo;s it.</p>
+            </div>
           </div>
 
           <ol className={s.steps}>

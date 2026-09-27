@@ -1,4 +1,14 @@
-export type Division = "Policing" | "Fire & rescue" | "Medical" | "Roads" | "Maritime";
+export type Division =
+  | "Policing"
+  | "Fire & rescue"
+  | "Medical"
+  | "Roads"
+  | "Maritime"
+  | "Military"
+  | "Oversight"
+  | "Government"
+  | "Justice"
+  | "Civilian";
 
 export type Unit = {
   /** Short designation shown as a badge, e.g. "MO8", "HART". */
@@ -16,11 +26,14 @@ export type Department = {
   abbr: string;
   name: string;
   division: Division;
+  /** Shown in the home page grid. The rest only appear on /departments. */
+  featured?: boolean;
   /**
    * White-on-dark PNG built by scripts/build-logos.cjs from assets/department-logos.
    * `scale` enlarges marks that look small at a shared height (round badges, flags).
+   * Leave out for departments with no official logo; a white text mark is shown instead.
    */
-  logo: { src: string; width: number; height: number; scale?: number };
+  logo?: { src: string; width: number; height: number; scale?: number };
   /** One-liner for the list and grid. */
   summary: string;
   /** Longer copy for the popup. */
@@ -39,6 +52,7 @@ export const departments: Department[] = [
     abbr: "MPS",
     name: "Metropolitan Police Service",
     division: "Policing",
+    featured: true,
     logo: { src: "/departments/met.png", width: 640, height: 172 },
     summary:
       "The backbone of every session. Response teams take the 999 calls, Roads & Transport Policing handle pursuits and traffic, and the TSG steps in when things escalate.",
@@ -96,6 +110,7 @@ export const departments: Department[] = [
     abbr: "CoLP",
     name: "City of London Police",
     division: "Policing",
+    featured: true,
     logo: { src: "/departments/colp.png", width: 640, height: 235 },
     summary:
       "Responsible for the Square Mile. Smaller and tighter than the Met, with a focus on the financial district, protective security and fraud.",
@@ -113,6 +128,7 @@ export const departments: Department[] = [
     abbr: "LFB",
     name: "London Fire Brigade",
     division: "Fire & rescue",
+    featured: true,
     logo: { src: "/departments/lfb.png", width: 555, height: 240 },
     summary:
       "Structure fires, collisions with people trapped, hazardous materials and technical rescue. Crews work incidents from first arrival to handover.",
@@ -130,6 +146,7 @@ export const departments: Department[] = [
     abbr: "LAS",
     name: "London Ambulance Service",
     division: "Medical",
+    featured: true,
     logo: { src: "/departments/las.png", width: 640, height: 154 },
     summary:
       "Patient care on scene and en route. Paramedics triage, treat and convey, working alongside police and fire at every major incident.",
@@ -202,6 +219,7 @@ export const departments: Department[] = [
     abbr: "NCA",
     name: "National Crime Agency",
     division: "Policing",
+    featured: true,
     logo: { src: "/departments/nca.png", width: 640, height: 236 },
     summary:
       "Plain-clothes investigations into organised crime. Long-running operations, surveillance and planned warrants rather than blue-light response.",
@@ -219,6 +237,7 @@ export const departments: Department[] = [
     abbr: "NH",
     name: "National Highways",
     division: "Roads",
+    featured: true,
     logo: { src: "/departments/nh.png", width: 640, height: 187 },
     summary:
       "Traffic Officers keep the strategic road network moving: rolling roadblocks, lane closures, breakdowns and scene protection for emergency services.",
@@ -236,6 +255,7 @@ export const departments: Department[] = [
     abbr: "RNLI",
     name: "Royal National Lifeboat Institution",
     division: "Maritime",
+    featured: true,
     logo: { src: "/departments/rnli.png", width: 360, height: 240, scale: 1.1 },
     summary:
       "Search and rescue on the Thames. Lifeboat crews respond to people in the water, vessels in difficulty and anything else the river throws at them.",
@@ -253,6 +273,7 @@ export const departments: Department[] = [
     abbr: "CTSFO",
     name: "Counter Terrorist Specialist Firearms Officers",
     division: "Policing",
+    featured: true,
     logo: { src: "/departments/ctsfo.png", width: 192, height: 240, scale: 1.3 },
     summary:
       "The highest tier of armed response. Deployed to marauding attacks, hostage situations and pre-planned high-risk entries.",
@@ -285,4 +306,89 @@ export const departments: Department[] = [
     ],
     gallery: [],
   },
+
+  /* ---- Placeholders: listed on /departments only, details to follow ---- */
+  {
+    slug: "army",
+    abbr: "Army",
+    name: "British Army",
+    division: "Military",
+    logo: { src: "/departments/army.png", width: 267, height: 240, scale: 1.2 },
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "sgc",
+    abbr: "SGC",
+    name: "Sportsman Gun Centre",
+    division: "Civilian",
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "iopc",
+    abbr: "IOPC",
+    name: "Independent Office for Police Conduct",
+    division: "Oversight",
+    logo: { src: "/departments/iopc.png", width: 640, height: 129 },
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "hmps",
+    abbr: "HMPS",
+    name: "HM Prison Service",
+    division: "Justice",
+    logo: { src: "/departments/hmps.png", width: 530, height: 240, scale: 1.35 },
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "home-office",
+    abbr: "HO",
+    name: "Home Office",
+    division: "Government",
+    logo: { src: "/departments/homeoffice.png", width: 554, height: 240, scale: 1.35 },
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "coroner",
+    abbr: "Coroner",
+    name: "HM Coroner's Service",
+    division: "Justice",
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
+  {
+    slug: "cwr",
+    abbr: "CWR",
+    name: "Canary Wharf Recovery",
+    division: "Civilian",
+    summary: "More details coming soon.",
+    about: [],
+    roles: [],
+    units: [],
+    gallery: [],
+  },
 ];
+
+export const featuredDepartments = departments.filter((d) => d.featured);

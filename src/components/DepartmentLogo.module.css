@@ -3,3 +3,19 @@
   max-width: 100%;
   height: auto;
 }
+
+/* Two-line wordmark in the brand's display face, roughly the height of a logo. */
+.textMark {
+  display: block;
+  max-width: 11ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: calc(var(--h) * 0.36);
+  font-style: italic;
+  font-weight: 800;
+  font-variation-settings: "wdth" 108;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-align: left;
+}

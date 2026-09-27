@@ -13,7 +13,8 @@ const blurb = {
   full: "Every slot is taken right now. Keep an eye on the Discord, spaces open up as people leave.",
 } as const;
 
-export function SessionPanel() {
+/** `wide` lays the panel out in two columns (used under the centred home hero). */
+export function SessionPanel({ variant = "stacked" }: { variant?: "stacked" | "wide" }) {
   const { session, now } = useSession();
   const [copied, setCopied] = useState(false);
   const live = session.state === "active" || session.state === "full";
@@ -31,7 +32,14 @@ export function SessionPanel() {
   }
 
   return (
-    <section id="status" className={s.panel} data-state={session.state} aria-live="polite" aria-label="Server status">
+    <section
+      id="status"
+      className={s.panel}
+      data-state={session.state}
+      data-variant={variant}
+      aria-live="polite"
+      aria-label="Server status"
+    >
       <div className={s.top}>
         <span className={s.label}>Server status</span>
         <span className={s.updated}>

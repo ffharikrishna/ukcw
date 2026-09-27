@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { departments, type Department } from "@/lib/departments";
+import { departments, featuredDepartments, type Department } from "@/lib/departments";
 import { DepartmentDialog } from "./DepartmentDialog";
 import { DepartmentLogo } from "./DepartmentLogo";
 import s from "./Departments.module.css";
@@ -43,9 +43,27 @@ export function Departments({ variant }: { variant: "list" | "grid" }) {
 }
 
 function List({ onOpen }: { onOpen: (d: Department) => void }) {
+  const others = departments.filter((d) => !d.featured);
+  return (
+    <>
+      <Rows items={featuredDepartments} onOpen={onOpen} />
+      {others.length > 0 && (
+        <>
+          <div className={s.groupHead}>
+            <h2>More departments</h2>
+            <p>Details for these are on the way.</p>
+          </div>
+          <Rows items={others} onOpen={onOpen} />
+        </>
+      )}
+    </>
+  );
+}
+
+function Rows({ items, onOpen }: { items: Department[]; onOpen: (d: Department) => void }) {
   return (
     <ol className={s.list}>
-      {departments.map((d) => (
+      {items.map((d) => (
         <li key={d.slug} id={d.slug} className={s.row}>
           <div className={s.mark}>
             <DepartmentLogo dept={d} height={52} />
@@ -63,11 +81,13 @@ function List({ onOpen }: { onOpen: (d: Department) => void }) {
             <p className={s.summary}>{d.summary}</p>
           </div>
           <div className={s.side}>
-            <ul className={s.roles} aria-label={`${d.abbr} roles`}>
-              {d.roles.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
+            {d.roles.length > 0 && (
+              <ul className={s.roles} aria-label={`${d.abbr} roles`}>
+                {d.roles.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            )}
             <span className={s.view} aria-hidden>
               View department <span className="arrow">→</span>
             </span>
@@ -81,7 +101,7 @@ function List({ onOpen }: { onOpen: (d: Department) => void }) {
 function Grid({ onOpen }: { onOpen: (d: Department) => void }) {
   return (
     <ul className={s.grid}>
-      {departments.map((d) => (
+      {featuredDepartments.map((d) => (
         <li key={d.slug}>
           <button type="button" className={s.tile} onClick={() => onOpen(d)} aria-haspopup="dialog">
             <span className={s.tileMark}>

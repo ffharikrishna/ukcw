@@ -7,13 +7,13 @@ import s from "../subpage.module.css";
 
 export const metadata: Metadata = {
   title: "Departments",
-  description: "The eight services that make up UK Canary Wharf Roleplay, from the Met to the RNLI.",
+  description: "The departments that make up UK Canary Wharf Roleplay, from the Met to the RNLI.",
 };
 
 export default function DepartmentsPage() {
   return (
     <>
-      <PageHeader eyebrow="Departments" title="Eight services, one city">
+      <PageHeader eyebrow="Departments" title={`${site.departmentCount} departments, one city`}>
         Every department has its own command structure, training and SOPs. Most people start in one and pick up a
         second once they know the ropes.
       </PageHeader>

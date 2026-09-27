@@ -6,6 +6,8 @@ const config: NextConfig = {
   agentRules: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    // Roblox avatar headshots on the Info page.
+    remotePatterns: [{ protocol: "https", hostname: "tr.rbxcdn.com" }],
   },
   async redirects() {
     // "How to join" was renamed to "Info".

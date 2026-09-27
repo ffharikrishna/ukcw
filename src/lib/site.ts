@@ -4,7 +4,9 @@ export const site = {
   name: "UK Canary Wharf Roleplay",
   shortName: "UKCW",
   description:
-    "A UK-based Emergency Response: Liberty County community. Structured sessions, eight departments, and a staff team that takes roleplay seriously.",
+    "A UK-based Emergency Response: Liberty County community. Structured sessions, 15+ departments, and a staff team that takes roleplay seriously.",
+  // Total departments on the server; only the most popular are featured on the site.
+  departmentCount: "15+",
   discordInvite: process.env.NEXT_PUBLIC_DISCORD_INVITE ?? "https://discord.gg/ukcw",
   // Roblox link to ER:LC. Private-server code is shown in the status panel when a session is live.
   gameUrl: "https://www.roblox.com/games/2534724415/Emergency-Response-Liberty-County",

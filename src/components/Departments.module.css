@@ -5,6 +5,21 @@
   gap: 16px;
 }
 
+/* Heading between the featured departments and the placeholders. */
+.groupHead {
+  margin: clamp(56px, 7vw, 88px) 0 24px;
+}
+
+.groupHead h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+.groupHead p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
 .row {
   position: relative;
   display: grid;
@@ -96,9 +111,18 @@
 
 .roles {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 14.5px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roles li {
+  padding: 5px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(236, 234, 243, 0.03);
+  font-size: 13.5px;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .view {
@@ -174,11 +198,6 @@
   }
   .side {
     grid-column: 2;
-  }
-  .roles {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px 20px;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);

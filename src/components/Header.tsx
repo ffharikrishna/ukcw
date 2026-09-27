@@ -58,9 +58,12 @@ export function Header() {
             <StatusDot state={session.state} />
             <span className={live ? s.statusLive : undefined}>{short}</span>
           </Link>
-          <a href={site.discordInvite} className={`btn btn-primary btn-sm ${s.cta}`} target="_blank" rel="noreferrer">
-            Join Discord
-          </a>
+          {/* The home hero already has a "Join the Discord" button, so skip this one there. */}
+          {pathname !== "/" && (
+            <a href={site.discordInvite} className={`btn btn-primary btn-sm ${s.cta}`} target="_blank" rel="noreferrer">
+              Join Discord
+            </a>
+          )}
           <button
             type="button"
             className={s.menuBtn}

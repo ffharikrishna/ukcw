@@ -53,9 +53,11 @@ export function DepartmentDialog({ dept, onClose }: { dept: Department | null; o
           </header>
 
           <div className={s.about}>
-            {dept.about.map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
-            ))}
+            {dept.about.length > 0 ? (
+              dept.about.map((p) => <p key={p.slice(0, 24)}>{p}</p>)
+            ) : (
+              <p>More details about {dept.name} are coming soon.</p>
+            )}
           </div>
 
           <div className={s.gallery}>
